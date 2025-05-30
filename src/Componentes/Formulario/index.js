@@ -2,8 +2,9 @@ import CampoTexto from "../campoTexto";
 import './Formulario.css'; // com o uso de index
 import ListaSuspensa from "../listaSuspensa"; // com o uso de index
 import Botao from "../Botao";
+import { useState } from "react";
 
-const Formulario = () => {
+const Formulario = (props) => {
 
     const times = [
         'Programação',
@@ -15,14 +16,53 @@ const Formulario = () => {
         'Inovação e Gestão'
     ]
 
+    const[Nome, setNome] = useState('');
+    const[Cargo, setCargo] = useState('');
+    const[Imagem, setImagem] = useState('');
+    const[Time, setTime] = useState('');
+
+    const aoSalvar = (evento) => {
+        evento.preventDefault(); // previne o comportamento padrão do form de recarregar a página
+        props.aoColaboradorCadastrado({
+            Nome,
+            Cargo,
+            Imagem,
+            Time
+        });
+    }
+
+
     return (
         <section className="Formulario">       
-            <form>
+            <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoTexto label="Nome" placeholder="Digite seu Nome" />
-                <CampoTexto label="Cargo" placeholder="Digite seu Cargo" />
-                <CampoTexto label="Imagem" placeholder="Digite o endereço da imagem" />
-                <ListaSuspensa label="Times" itens={times} placeholder= "Escolha o seu time"/>
+                <CampoTexto
+                     obrigatorio ={true} 
+                     label="Nome" 
+                     placeholder="Digite seu Nome"
+                     valor={Nome}
+                     aoAlterado={valor => setNome(valor)} // Atualiza o estado Nome com o valor digitado
+                />
+                <CampoTexto
+                 obrigatorio ={true}
+                 label="Cargo" 
+                 placeholder="Digite seu Cargo" 
+                    valor={Cargo}
+                    aoAlterado={valor => setCargo(valor)}  // Atualiza o estado Cargo com o valor digitado
+                />
+                <CampoTexto
+                 label="Imagem"
+                 placeholder="Digite o endereço da imagem"
+                 valor={Imagem}
+                 aoAlterado={valor => setImagem(valor)} // Atualiza o estado Imagem com o valor digitado
+                />
+                <ListaSuspensa
+                 obrigatorio ={true}
+                 label="Time"
+                 itens={times}
+                 placeholder= "Escolha o seu time"
+                 aoAlterado={valor => setTime(valor)} // Atualiza o estado Time com o valor selecionad
+                />
                 <Botao texto = "Criar Card"/>
             </form>
         </section>
