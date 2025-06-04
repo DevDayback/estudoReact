@@ -20,6 +20,10 @@ const Formulario = (props) => {
             Imagem,
             Time
         });
+        setNome(''); // Limpa o campo Nome após o envio
+        setCargo(''); // Limpa o campo Cargo após o envio
+        setImagem(''); // Limpa o campo Imagem após o envio
+        setTime(''); // Limpa o campo Time após o envio
     }
 
 
