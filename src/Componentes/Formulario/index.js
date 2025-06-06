@@ -55,6 +55,7 @@ const Formulario = (props) => {
                  obrigatorio ={true}
                  label="Time"
                  itens={props.nomeDosTimes} // Recebe a lista de times como propriedade
+                 valor={Time} // Valor do estado Time
                  placeholder= "Escolha o seu time"
                  aoAlterado={valor => setTime(valor)} // Atualiza o estado Time com o valor selecionad
                 />

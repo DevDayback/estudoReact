@@ -45,7 +45,7 @@ function App() {
   const [colaboradores, setColaboradores] = useState([]);
 
   const aoNovoColaboradorAdicionado = (colaborador) => {
-    console.log(colaborador);
+    debugger
     setColaboradores([...colaboradores, colaborador]);
   }
 
@@ -60,7 +60,6 @@ function App() {
         corSecundaria={time.corSecundaria}
         colaboradores={colaboradores.filter(colaborador => colaborador.Time === time.nome)} // Filtra os colaboradores do time atual
       />)}
-      
     </div>  
   );
 }
